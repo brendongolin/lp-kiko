@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-body bg-agro-cream text-agro-slate;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold text-agro-green-dark;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-agro-gold hover:bg-agro-gold-dark text-agro-green-dark font-bold py-3 px-6 sm:py-4 sm:px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-block text-center text-sm sm:text-base;
+  }
+  
+  .glass-card {
+    @apply bg-white bg-opacity-70 backdrop-blur-md border border-white border-opacity-30 rounded-2xl p-8 shadow-xl;
+  }
+  
+  .section-title {
+    @apply text-2xl sm:text-3xl md:text-4xl mb-4 sm:mb-6 relative inline-block;
+  }
+  
+  .section-title::after {
+    content: '';
+    @apply absolute -bottom-2 left-0 w-16 sm:w-20 h-1 bg-agro-gold rounded-full;
+  }
+  
+  /* Underline expansion effect for nav links */
+  .nav-link {
+    position: relative;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    @apply bg-agro-green;
+    transform-origin: bottom right;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+  /* Mobile menu overlay */
+  .mobile-menu {
+    @apply fixed inset-0 z-[60] bg-agro-green-dark/95 backdrop-blur-lg;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .mobile-menu.open {
+    transform: translateX(0);
+  }
+  .mobile-menu a {
+    @apply block text-2xl font-heading font-bold text-white py-4 border-b border-white/10 transition-colors;
+  }
+  .mobile-menu a:hover,
+  .mobile-menu a:active {
+    @apply text-agro-gold;
+  }
+
+  /* Hamburger button */
+  .hamburger {
+    @apply relative w-8 h-6 flex flex-col justify-between md:hidden cursor-pointer z-[70];
+  }
+  .hamburger span {
+    @apply block w-full h-0.5 bg-agro-green-dark rounded-full transition-all duration-300 origin-center;
+  }
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+    @apply bg-white;
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+    @apply bg-white;
+  }
+}
+
+/* Custom Animations */
+@keyframes pulse-gold {
+  0% { box-shadow: 0 0 0 0 rgba(212, 163, 115, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(212, 163, 115, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(212, 163, 115, 0); }
+}
+
+.animate-pulse-gold {
+  animation: pulse-gold 2s infinite;
+}
+
+@keyframes pulse-green {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.animate-pulse-green {
+  animation: pulse-green 2s infinite;
+}
+
+/* Scroll reveal items */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal-item.reveal-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Timeline items reveal */
+.timeline-item {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.timeline-item.reveal-active {
+  opacity: 1;
+  transform: translateY(0);
+}
