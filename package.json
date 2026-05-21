@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:css": "tailwindcss -i ./src/css/input.css -o ./dist/css/style.css",
-    "watch:css": "tailwindcss -i ./src/css/input.css -o ./dist/css/style.css --watch",
+    "build:css": "tailwindcss -i ./src/css/input.css -o ./dist/css/style.css --minify",
+    "watch:css": "tailwindcss -i ./src/css/input.css -o ./dist/css/style.css --minify --watch",
     "build": "rm -rf dist && mkdir -p dist/css dist/js && npm run build:css && cp src/index.html dist/index.html && cp src/js/main.js dist/js/main.js && cp -r assets dist/assets"
   },
   "keywords": [],
